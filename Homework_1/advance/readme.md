@@ -37,7 +37,7 @@ The depth of representations is of central importance for many visual recognitio
 </details>
 
 ## Results and models
-### Cifar100
+### Cifar10
 |   Model   | Params(M) | Flops(G) | Top-1 (%) | Top-5 (%) |               Config               |                           Download                           |
 | :-------: | :-------: | :------: | :-------: | :-------: | :--------------------------------: | :----------------------------------------------------------: |
 | ResNet-50 |   23.521   |   63.931   |   83.40   |      | [config](./resnet50_1xb8_cifar10.py) | [model](https://pan.baidu.com/s/1xl5DL5NLhZOFfVciLS99Yw) \| 提取码: buo7 |
