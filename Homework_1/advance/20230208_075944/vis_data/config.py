@@ -2,7 +2,7 @@ model = dict(
     type='ImageClassifier',
     backbone=dict(
         type='ResNet_CIFAR',
-        depth=50,
+        depth=18,
         num_stages=4,
         out_indices=(3, ),
         style='pytorch'),
@@ -10,7 +10,7 @@ model = dict(
     head=dict(
         type='LinearClsHead',
         num_classes=10,
-        in_channels=2048,
+        in_channels=512,
         loss=dict(type='CrossEntropyLoss', loss_weight=1.0)))
 dataset_type = 'CIFAR10'
 data_preprocessor = dict(
@@ -28,7 +28,7 @@ train_dataloader = dict(
     pin_memory=True,
     persistent_workers=True,
     collate_fn=dict(type='default_collate'),
-    batch_size=8,
+    batch_size=32,
     num_workers=2,
     dataset=dict(
         type='CIFAR10',
@@ -67,10 +67,10 @@ test_dataloader = dict(
     sampler=dict(type='DefaultSampler', shuffle=False))
 test_evaluator = dict(type='Accuracy', topk=(1, ))
 optim_wrapper = dict(
-    optimizer=dict(type='SGD', lr=0.05, momentum=0.9, weight_decay=0.0001))
+    optimizer=dict(type='SGD', lr=0.0005, momentum=0.9, weight_decay=0.0001))
 param_scheduler = dict(
     type='MultiStepLR', by_epoch=True, milestones=[100, 150], gamma=0.1)
-train_cfg = dict(by_epoch=True, max_epochs=50, val_interval=10)
+train_cfg = dict(by_epoch=True, max_epochs=45, val_interval=5)
 val_cfg = dict()
 test_cfg = dict()
 auto_scale_lr = dict(base_batch_size=8)
@@ -90,8 +90,8 @@ vis_backends = [dict(type='LocalVisBackend')]
 visualizer = dict(
     type='ClsVisualizer', vis_backends=[dict(type='LocalVisBackend')])
 log_level = 'INFO'
-load_from = None
-resume = False
+load_from = '/home/liuyoufu/code/OpenMMLab/mmclassification/resnet18_b16x8_cifar10_20210528-bd6371c8.pth'
+resume = None
 randomness = dict(seed=None, deterministic=False)
 launcher = 'none'
-work_dir = './work_dirs/resnet50_1xb8_cifar10'
+work_dir = './work_dirs/resnet18_8xb16_cifar10'
